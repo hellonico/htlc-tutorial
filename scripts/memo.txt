@@ -1,0 +1,7 @@
+npx hardhat run --network bsctest ./scripts/deploy.js
+
+npx hardhat verify --network goerli 0x25020C9Fb259D5571f689Eb5eFe44305FFcd7920  --contract "contracts/CToken.sol:CToken"
+npx hardhat verify --network goerli 0x6Eaf51DD1eEaff5EA94d3D17D52EEF8fF26a1B72  --contract "contracts/HashedTimelockERC20.sol:HashedTimelockERC20"
+
+npx hardhat verify --network bsctest 0xAA3DC57a4180316073473f65B683C317e1094D94  --contract "contracts/CToken.sol:CToken"
+npx hardhat verify --network bsctest 0xc785eFd68f3Ea1adf7F9A5419b1316b9249080E5  --contract "contracts/HashedTimelockERC20.sol:HashedTimelockERC20"
