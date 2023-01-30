@@ -115,8 +115,8 @@ const Home = () => {
               timelock: <input type="text" onChange={onExpiryChange}/> expiry = {(new Date(expiry*1000)).toString()}<br/>
               hashlock: <input type="text"  style = {{width: 500}} onChange={onTimelockChange}/><br/>
               amount: <input type="text" onChange={onAmountChange}/> wei value = {amount}<br/>
-              <button onClick={create}>Create Transaction</button><br/>
-              new HTLC transaction ID : {contractId}
+              <button onClick={create}>Create HTLC contract</button><br/>
+              new HTLC contract ID : {contractId}
               <br/><br/><br/>
               contract ID on other side : <input type="text" style = {{width: 500}} onChange={onWithdrawContractIdChange}/><br/>
               reveal secret: <input type="text" onChange={onSecretChange}/><br/>
