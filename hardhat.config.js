@@ -25,7 +25,8 @@ module.exports = {
     
   },
   etherscan: {
-    apiKey: '5X8PTH7UXXP1AANUF66I5WIYXH931KGB5I' //eth
+    apiKey: 'ACVCD1DN2JYHNXX4DPEYCG5H4VBXNAWUU1' //  nico's 
+    //eth
     //apiKey:'E7W916YZYNZD5W9T4JXIMU38Q2Z2M8QTSI'  //bsc
   },
 };

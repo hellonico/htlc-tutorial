@@ -5,15 +5,15 @@ async function main() {
     console.log("Account balance:", (await deployer.getBalance()).toString());
   
 
-    const ctoken = await ethers.getContractFactory("NToken");
-    const ctk = await ctoken.deploy();
-    saveFrontendFiles(ctk , "NToken");
-    console.log("NToken address is " + ctk.address);
+    // const ctoken = await ethers.getContractFactory("CToken");
+    // const ctk = await ctoken.deploy();
+    // saveFrontendFiles(ctk , "CToken");
+    // console.log("CToken address is " + ctk.address);
 
-    // const HashedTimelockERC20 = await ethers.getContractFactory("HashedTimelockERC20");
-    // const htlc = await HashedTimelockERC20.deploy();
-    // saveFrontendFiles(htlc , "HashedTimelockERC20");
-    // console.log("HTLC address is " + htlc.address);
+    const HashedTimelockERC20 = await ethers.getContractFactory("HashedTimelockERC20");
+    const htlc = await HashedTimelockERC20.deploy();
+    saveFrontendFiles(htlc , "HashedTimelockERC20");
+    console.log("HTLC address is " + htlc.address);
 
   }
   
