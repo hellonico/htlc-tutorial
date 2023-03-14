@@ -1,11 +1,21 @@
 import Navbar from "./Navbar";
+import CHAINS from "./metadata/chains.json";
 
 const Home = ({loading, chainId, account, ctk, htlc, web3Handler}) => {
-  return (
-      <div>
-        {loading ? (
+    if(loading) {
+        return(
             <button type="button" className="btn btn-primary" onClick={web3Handler}>Connect Metamask</button>
-        ) : (
+        )
+    } else {
+
+    }
+    const chainName = CHAINS[chainId]["name"];
+    const scan = CHAINS[chainId]["scan"];
+    const scanAccount = scan+"/"+account;
+    const scanMulti = "https://blockscan.com/address/"+account;
+    const scanCtk = scan + "/" + ctk.address;
+    const scanHtlc = scan + "/" + htlc.address;
+  return (
           <div>
             <Navbar />
               <div className="container-fluid">
@@ -18,28 +28,29 @@ const Home = ({loading, chainId, account, ctk, htlc, web3Handler}) => {
                       </thead>
                       <tbody>
                       <tr>
-                          <th scope="row">Chain Id</th>
-                          <td>{chainId}</td>
+                          <th scope="row">Chain</th>
+                          <td>{chainName}</td>
                       </tr>
                       <tr>
                           <th scope="row">Account</th>
-                          <td>{account}</td>
+                          <td>
+                              <a target="_blank" href={scanAccount}>{account}</a>&nbsp;
+                              [  <a target="_blank" href={scanMulti}>blockscan</a> ]
+                          </td>
                       </tr>
                       <tr>
                           <th scope="row">Token Address</th>
-                          <td>{ctk.address}</td>
+                          <td><a target="_blank" href={scanCtk}>{ctk.address}</a></td>
                       </tr>
                       <tr>
                           <th scope="row">HTLC address</th>
-                          <td>{htlc.address}</td>
+                          <td><a target="_blank" href={scanHtlc}>{htlc.address}</a></td>
                       </tr>
 
                       </tbody>
                   </table>
 
             </div>
-          </div>
-        )}
       </div>
   );
 }
