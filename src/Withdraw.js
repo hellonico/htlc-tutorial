@@ -26,7 +26,7 @@ const Withdraw = ({loading, htlc}) => {
       {!loading && <div>
         contract ID on other side : <input type="text" style = {{width: 500}} onChange={onWithdrawContractIdChange}/><br/>
         reveal secret: <input type="text" onChange={onSecretChange}/><br/>
-        <button onClick={withdraw}>Withdraw</button><br/>
+        <button type="button" className="btn btn-success"  onClick={withdraw}>Withdraw</button><br/>
       </div>}
     </div>
   );

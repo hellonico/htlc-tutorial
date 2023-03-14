@@ -49,7 +49,7 @@ const Create = ({loading, ctk, htlc}) => {
         timelock: <input type="text" onChange={onExpiryChange}/> expiry = {(new Date(expiry*1000)).toString()}<br/>
         hashlock: <input type="text"  style = {{width: 500}} onChange={onTimelockChange}/><br/>
         amount: <input type="text" onChange={onAmountChange}/> wei value = {amount}<br/>
-        <button onClick={create}>Create HTLC contract</button><br/>
+        <button type="button" className="btn btn-primary" onClick={create}>Create HTLC contract</button><br/>
         new HTLC contract ID : {contractId}
       </div>}
     </div>

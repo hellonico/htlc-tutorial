@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { ethers } from "ethers"
-import CTK_ABI from "./metadata/CToken.json";
+import CTK_ABI from "./metadata/NToken.json";
 import HTLC_ABI from "./metadata/HashedTimelockERC20.json";
-import CTK_ADDRESSES from "./metadata/CToken-address.json";
+import CTK_ADDRESSES from "./metadata/NToken-address.json";
 import HTLC_ADDRESSES from "./metadata/HashedTimelockERC20-address.json";
 import Home from "./Home";
 import Create from "./Create";

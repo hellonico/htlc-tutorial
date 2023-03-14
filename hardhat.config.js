@@ -5,28 +5,34 @@ require("@nomiclabs/hardhat-etherscan");
 /**
 * @type import('hardhat/config').HardhatUserConfig
 */
+
+// Hardhat documentation
+// https://docs.bnbchain.org/docs/hardhat-new/
+
+// Alchemy documentation
+// https://docs.alchemy.com/docs/choosing-a-web3-network
 module.exports = {
   solidity: "0.8.16",
   paths: {
     artifacts: "./metadata/artifacts",
     sources: "./contracts",
-    cache: "./metadata/cache",
+    cache: "./metadata/cache"
   },
   networks: {
     goerli: {
-        url: "https://goerli.infura.io/v3/11f1469accbc473884fa50e686eef6cc",
-        accounts:["d1150c6bf723bb8ebf95d8c4534f73a998357049b89e9208026d72ef8b468d76"] //0x712626e129FaE7753b0B515cF862e80F481f41f7
+        // https://dashboard.alchemy.com/apps/empp6stbw890phut
+        url: "https://eth-goerli.g.alchemy.com/v2/PzslU0eo1O-jORjgIsVrfNmk3zm6X_36",
+        // this is my metamask private key
+        accounts:["13a33974b68392d0bf0bdb8839dc1393bdfc5b6ba5019e1245d12a7f802efe73"]
       },
     bsctest: {
-      //url: "https://rough-soft-pool.bsc-testnet.discover.quiknode.pro/ca3b4c2f10f019903190e1e5fb32ce9a39c1c86d/",
       url:"https://bsc-testnet.public.blastapi.io",
-      accounts:["d1150c6bf723bb8ebf95d8c4534f73a998357049b89e9208026d72ef8b468d76"]
-    },
-    
+      // this is my metamask private key
+      accounts:["b44d27f5d9964bba73e3691b0afda88486d25f2a0b381be898de551775e4d974"]
+    }
   },
   etherscan: {
-    apiKey: 'ACVCD1DN2JYHNXX4DPEYCG5H4VBXNAWUU1' //  nico's 
-    //eth
-    //apiKey:'E7W916YZYNZD5W9T4JXIMU38Q2Z2M8QTSI'  //bsc
-  },
+    // https://etherscan.io/myapikey
+    apiKey: 'ACVCD1DN2JYHNXX4DPEYCG5H4VBXNAWUU1' //  nico's
+  }
 };
