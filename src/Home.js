@@ -4,13 +4,40 @@ const Home = ({loading, chainId, account, ctk, htlc, web3Handler}) => {
   return (
       <div>
         {loading ? (
-          <div>
             <button type="button" className="btn btn-primary" onClick={web3Handler}>Connect Metamask</button>
-          </div>
         ) : (
           <div>
             <Navbar />
-            chain ID = {chainId}<br/>Account = {account} <br/> Token Address = {ctk.address}<br/>HTLC address = {htlc.address}<br/>
+              <div className="container-fluid">
+                  <table className="table">
+                      <thead>
+                      <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Value</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                          <th scope="row">Chain Id</th>
+                          <td>{chainId}</td>
+                      </tr>
+                      <tr>
+                          <th scope="row">Account</th>
+                          <td>{account}</td>
+                      </tr>
+                      <tr>
+                          <th scope="row">Token Address</th>
+                          <td>{ctk.address}</td>
+                      </tr>
+                      <tr>
+                          <th scope="row">HTLC address</th>
+                          <td>{htlc.address}</td>
+                      </tr>
+
+                      </tbody>
+                  </table>
+
+            </div>
           </div>
         )}
       </div>

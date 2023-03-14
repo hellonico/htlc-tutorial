@@ -2,17 +2,32 @@ import { useState } from "react";
 import { ethers } from "ethers"
 import Navbar from "./Navbar";
 
+const NewContract = ({contractid}) => {
+  if (contractid == "") {
+    return <div/>
+  } else {
+    return (
+        <>
+          <label htmlFor="static-new">New HTLC contract ID</label>
+          <input type="text" readOnly className="col-sm-10 form-control-plaintext" id="static-new" value={contractid}/>
+        </>
+    )
+  }
+}
+
 const Create = ({loading, ctk, htlc}) => {
   const [amount, setAmount] = useState(null);
-  const [hashlock, setHashlock] = useState(null);
+  const [hashlock, setHashlock] = useState("");
   const [expiry, setExpiry] = useState(null);
   const [receiver, setReceiver] = useState(null);
   const [contractId, setContractId] = useState('');
 
-  const onTimelockChange = (e) => {
-    //const packed = ethers.utils.formatBytes32String(e.target.value);
-    //setHashlock(ethers.utils.soliditySha256(['bytes32'], [packed]));
-    setHashlock(e.target.value);
+  const onhashchange = (e) => {
+    const packed = ethers.utils.formatBytes32String(e.target.value);
+    const hashlock = ethers.utils.soliditySha256(['bytes32'], [packed]);
+    // console.log(hashlock);
+    setHashlock(hashlock);
+    // setHashlock(e.target.value);
   }
   const onAmountChange = (e) => {
     const wei = ethers.utils.parseEther(e.target.value);
@@ -28,6 +43,9 @@ const Create = ({loading, ctk, htlc}) => {
   }
 
   const create = async() => {
+    // reset if set previously
+    setContractId("")
+
     const apvtx = await ctk.approve(htlc.address, amount);
     console.log(apvtx);
     await apvtx.wait(1);
@@ -43,14 +61,37 @@ const Create = ({loading, ctk, htlc}) => {
 
   return (
     <div>
-      <Navbar/><br/>
-        {!loading && <div>
-        receiver: <input type="text" style = {{width: 400}} onChange={onReceiverChange}/><br/>
-        timelock: <input type="text" onChange={onExpiryChange}/> expiry = {(new Date(expiry*1000)).toString()}<br/>
-        hashlock: <input type="text"  style = {{width: 500}} onChange={onTimelockChange}/><br/>
-        amount: <input type="text" onChange={onAmountChange}/> wei value = {amount}<br/>
-        <button type="button" className="btn btn-primary" onClick={create}>Create HTLC contract</button><br/>
-        new HTLC contract ID : {contractId}
+      <Navbar/>
+        {!loading && <div className="container-fluid">
+          <div className="form-group">
+            <label htmlFor="receiver">Receiver</label>
+            <input class="col-sm-10 form-control form-control-sm" id="receiver" type="text" onChange={onReceiverChange}/>
+
+            <label htmlFor="timelock">Timelock</label>
+            <input class="col-sm-10 form-control form-control-sm"  id="timelock" type="text" onChange={onExpiryChange}/>
+
+            <label htmlFor="static-expiry">Expiry</label>
+            <input type="text" readOnly class="col-sm-10 form-control-plaintext" id="static-expiry" value={(new Date(expiry*1000)).toString()}/>
+
+
+            <label htmlFor="hashlock">Hashlock (plain)</label>
+            <input class="col-sm-10 form-control form-control-sm" id="hashlock" type="text" onChange={onhashchange}/>
+
+            <label htmlFor="static-secret">Hashlock (encoded)</label>
+            <input type="text" readOnly className="col-sm-10 form-control-plaintext" id="static-secret" value={hashlock}/>
+
+            <label htmlFor="amount">Amount</label>
+            <input class="col-sm-10 form-control form-control-sm"  id="amount" type="text" onChange={onAmountChange}/>
+
+            <label htmlFor="static-amount">Wei Value</label>
+            <input type="text" readOnly className="col-sm-10 form-control-plaintext" id="static-amount" value={amount}/>
+
+            <button type="button" className="btn btn-success" onClick={create}>Create HTLC contract</button><br/>
+
+            <NewContract contractid={contractId}/>
+          </div>
+
+
       </div>}
     </div>
   );
